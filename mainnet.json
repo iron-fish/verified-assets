@@ -1,12 +1,13 @@
 {
-    "version": 2,
+    "schemaVersion": 2,
     "assets": [
         {
             "assetId": "51f33a2f14f92735e562dc658a5639279ddca3d5079a6d1242b2a588a9cbf44c",
             "name": "$IRON",
             "symbol": "IRON",
             "decimals": 8,
-            "logoURI": "https://ironfish.network/favicon.ico"
+            "logoURI": "https://ironfish.network/favicon.ico",
+            "website": "https://ironfish.network"
         }
     ]
 }
