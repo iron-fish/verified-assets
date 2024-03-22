@@ -12,27 +12,55 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - env:
-          IRONFISH_API_KEY: ${{ secrets.IRONFISH_API_KEY }}
+
       - name: Send JSON to API
+        env:
+          IRON_FISH_API_KEY: ${{ secrets.IRON_FISH_API_KEY }}
         run: |
-          curl --request POST \
-          --url "https://api.ironfish.network/assets/verified" \
-          --data @mainnet.json" \
+          OUTPUT="$(curl \
+          --write-out '\n%{response_code}' \
+          --request POST \
+          --data @mainnet.json \
           --header "Content-Type: application/json" \
-          --header "Authorization: Bearer $IRONFISH_API_KEY"
+          --header "Authorization: Bearer $IRON_FISH_API_KEY" \
+          "https://api.ironfish.network/assets/verified")"
+
+          STATUS=$(echo $OUTPUT | tr -d '\n' | sed -n -E 's/.*([0-9]{3})$/\1/p')
+          echo "Response: $OUTPUT"
+
+          if [[ $STATUS -ne 200 ]]; then
+            echo "There was an unexpected HTTP status code: $STATUS"
+            exit 1
+          else
+            echo "Success"
+            exit 0
+          fi
 
   sync_to_testnet_api:
     name: Sync to API Testnet
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - env:
-          IRONFISH_API_KEY: ${{ secrets.IRONFISH_API_KEY }}
+
       - name: Send JSON to API
+        env:
+          IRON_FISH_API_KEY_TESTNET: ${{ secrets.IRON_FISH_API_KEY_TESTNET }}
         run: |
-          curl --request POST \
-          --url "https://testnet.api.ironfish.network/assets/verified" \
+          OUTPUT="$(curl \
+          --write-out '\n%{response_code}' \
+          --request POST \
           --data @testnet.json \
           --header "Content-Type: application/json" \
-          --header "Authorization: Bearer $IRONFISH_API_KEY"
+          --header "Authorization: Bearer $IRON_FISH_API_KEY_TESTNET" \
+          "https://testnet.api.ironfish.network/assets/verified")"
+
+          STATUS=$(echo $OUTPUT | tr -d '\n' | sed -n -E 's/.*([0-9]{3})$/\1/p')
+          echo "Response: $OUTPUT"
+
+          if [[ $STATUS -ne 200 ]]; then
+            echo "There was an unexpected HTTP status code: $STATUS"
+            exit 1
+          else
+            echo "Success"
+            exit 0
+          fi
