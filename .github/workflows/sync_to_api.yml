@@ -1,0 +1,38 @@
+name: Sync to API
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync_to_mainnet_api:
+    name: Sync to API Mainnet
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - env:
+          IRONFISH_API_KEY: ${{ secrets.IRONFISH_API_KEY }}
+      - name: Send JSON to API
+        run: |
+          curl --request POST \
+          --url "https://api.ironfish.network/assets/verified" \
+          --data @mainnet.json" \
+          --header "Content-Type: application/json" \
+          --header "Authorization: Bearer $IRONFISH_API_KEY"
+
+  sync_to_testnet_api:
+    name: Sync to API Testnet
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - env:
+          IRONFISH_API_KEY: ${{ secrets.IRONFISH_API_KEY }}
+      - name: Send JSON to API
+        run: |
+          curl --request POST \
+          --url "https://testnet.api.ironfish.network/assets/verified" \
+          --data @testnet.json \
+          --header "Content-Type: application/json" \
+          --header "Authorization: Bearer $IRONFISH_API_KEY"
