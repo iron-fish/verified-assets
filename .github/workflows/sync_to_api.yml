@@ -1,0 +1,66 @@
+name: Sync to API
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync_to_mainnet_api:
+    name: Sync to API Mainnet
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Send JSON to API
+        env:
+          IRON_FISH_API_KEY: ${{ secrets.IRON_FISH_API_KEY }}
+        run: |
+          OUTPUT="$(curl \
+          --write-out '\n%{response_code}' \
+          --request POST \
+          --data @mainnet.json \
+          --header "Content-Type: application/json" \
+          --header "Authorization: Bearer $IRON_FISH_API_KEY" \
+          "https://api.ironfish.network/assets/verified")"
+
+          STATUS=$(echo $OUTPUT | tr -d '\n' | sed -n -E 's/.*([0-9]{3})$/\1/p')
+          echo "Response: $OUTPUT"
+
+          if [[ $STATUS -ne 200 ]]; then
+            echo "There was an unexpected HTTP status code: $STATUS"
+            exit 1
+          else
+            echo "Success"
+            exit 0
+          fi
+
+  sync_to_testnet_api:
+    name: Sync to API Testnet
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Send JSON to API
+        env:
+          IRON_FISH_API_KEY_TESTNET: ${{ secrets.IRON_FISH_API_KEY_TESTNET }}
+        run: |
+          OUTPUT="$(curl \
+          --write-out '\n%{response_code}' \
+          --request POST \
+          --data @testnet.json \
+          --header "Content-Type: application/json" \
+          --header "Authorization: Bearer $IRON_FISH_API_KEY_TESTNET" \
+          "https://testnet.api.ironfish.network/assets/verified")"
+
+          STATUS=$(echo $OUTPUT | tr -d '\n' | sed -n -E 's/.*([0-9]{3})$/\1/p')
+          echo "Response: $OUTPUT"
+
+          if [[ $STATUS -ne 200 ]]; then
+            echo "There was an unexpected HTTP status code: $STATUS"
+            exit 1
+          else
+            echo "Success"
+            exit 0
+          fi
