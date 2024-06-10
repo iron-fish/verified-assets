@@ -7,6 +7,13 @@
             "decimals": 8,
             "logoURI": "https://ironfish.network/favicon.ico",
             "website": "https://ironfish.network"
+        },
+        {
+            "identifier": "ed289eb0ca4211ba335f2909c2b151ab3c76849a57746e42a72cf3158d2aa8d7",
+            "symbol": "BILL",
+            "decimals": 8,
+            "logoURI": "https://chainport-public-files-preprod.s3.amazonaws.com/b96539b5-6e87-42de-9065-a817c9ef7312.svg",
+            "website": "https://preprod.chainport.io/"
         }
     ]
 }
