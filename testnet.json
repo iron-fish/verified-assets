@@ -14,6 +14,20 @@
             "decimals": 8,
             "logoURI": "https://chainport-public-files-preprod.s3.amazonaws.com/b96539b5-6e87-42de-9065-a817c9ef7312.svg",
             "website": "https://preprod.chainport.io/"
+        },
+        {
+            "identifier": "e70c3f855bb672964754f46dc9b7a1a0b3cf9e70a6fbbe937bf2536f6d85e54d",
+            "symbol": "ODED",
+            "decimals": 8,
+            "logoURI": "https://chainport-public-files-preprod.s3.amazonaws.com/224a2b06-b24c-4420-a7cf-9ba8a78e0152.svg",
+            "website": "https://preprod.chainport.io/"
+        },
+        {
+            "identifier": "3867946ccc047f64b399dfee5b7f70cee6bdb7063c88a4a32862d319a5497fb9",
+            "symbol": "DDP",
+            "decimals": 8,
+            "logoURI": "https://chainport-public-files-preprod.s3.amazonaws.com/b96539b5-6e87-42de-9065-a817c9ef7312.svg",
+            "website": "https://preprod.chainport.io/"
         }
     ]
 }
