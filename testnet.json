@@ -28,6 +28,13 @@
             "decimals": 8,
             "logoURI": "https://chainport-public-files-preprod.s3.amazonaws.com/b96539b5-6e87-42de-9065-a817c9ef7312.svg",
             "website": "https://preprod.chainport.io/"
+        },
+        {
+            "identifier": "f750166f02ecd3a4edb584f6e098d9cf0106afff508185b5f6221cf7ae5e04d2",
+            "symbol": "ACP",
+            "decimals": 6,
+            "logoURI": "https://chainport-public-files-preprod.s3.amazonaws.com/b96539b5-6e87-42de-9065-a817c9ef7312.svg",
+            "website": "https://preprod.chainport.io/"
         }
     ]
 }
