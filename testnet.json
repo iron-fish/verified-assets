@@ -35,6 +35,13 @@
             "decimals": 6,
             "logoURI": "https://chainport-public-files-preprod.s3.amazonaws.com/b96539b5-6e87-42de-9065-a817c9ef7312.svg",
             "website": "https://preprod.chainport.io/"
+        },
+        {
+            "identifier": "03dc5579dcde53928f9fb68baeced68514a5ba1a8e1dd54213a9b14f54f06a3b",
+            "symbol": "USDC",
+            "decimals": 6,
+            "logoURI": "https://assets.coingecko.com/coins/images/6319/standard/usdc.png?1696506694",
+            "website": "https://www.circle.com/usdc"
         }
     ]
 }
